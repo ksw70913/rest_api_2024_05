@@ -1,8 +1,8 @@
-package com.koreait.rest_2024_05.member.service;
+package com.koreait.rest_2024_05.boundedContext.member.service;
 
 import com.koreait.rest_2024_05.base.jwt.JwtProvider;
-import com.koreait.rest_2024_05.member.entity.Member;
-import com.koreait.rest_2024_05.member.repository.MemberRepository;
+import com.koreait.rest_2024_05.boundedContext.member.entity.Member;
+import com.koreait.rest_2024_05.boundedContext.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -42,5 +42,9 @@ public class MemberService {
         }
 
         return jwtProvider.genToken(member.toClaims(), 60 * 60 * 24 * 365);
+    }
+
+    public Optional<Member> findById(long id) {
+        return memberRepository.findById(id);
     }
 }
